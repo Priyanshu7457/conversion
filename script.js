@@ -116,6 +116,7 @@ const convert = document.getElementById("convert");
 const reset = document.getElementById("reset");
 const HexInput = document.getElementById("Hexbox");
 
+
 selectBox1.addEventListener("change", () => {
   const unit1 = selectBox1.value;
   if (unit1 === "4") {
@@ -127,14 +128,15 @@ selectBox1.addEventListener("change", () => {
   convert.addEventListener("click", () => {
     const unit1 = selectBox1.value;
     const unit2 = selectBox2.value;
+    let result;
     const inputValue = parseFloat(input.value);
     if (unit1 != 4) {
       if (isNaN(inputValue)) {
         alert("Please enter a number!");
-        return;
+        result='';
       }
     }
-    let result;
+
 
     // Binary 
     if (unit1 === "1" && unit2 === "1") {
@@ -142,28 +144,28 @@ selectBox1.addEventListener("change", () => {
         result = inputValue;
       } else {
         alert(`${input.value} is not a binary number.`);
-        return;
+        result = '';
       }
     } else if (unit1 === "1" && unit2 === "2") {
       if (isBinary(inputValue)) {
         result = binaryToDecimal(inputValue);
       } else {
         alert(`${input.value} is not a binary number.`);
-        return;
+        result = '';
       }
     } else if (unit1 === "1" && unit2 === "3") {
       if (isBinary(inputValue)) {
         result = decimalToOctal(parseInt(inputValue, 2));
       } else {
         alert(`${input.value} is not a binary number.`);
-        return;
+        result = '';
       }
     } else if (unit1 === "1" && unit2 === "4") {
       if (isBinary(inputValue)) {
         result = binaryToHex(inputValue);
       } else {
         alert(`${input.value} is not a binary number.`);
-        return;
+        result = '';
       }
     }
     //  Decimal 
@@ -189,20 +191,29 @@ selectBox1.addEventListener("change", () => {
     //  Hexa Decimal 
     else if (unit1 === "4" && unit2 === "1") {
       let hexValue = HexInput.value;
+      console.log(hexValue);
       if (isHexadecimal(hexValue)) {
         result = hexToBinary(hexValue);
-      } else {
+      } else if (hexValue <= 0) {
+        alert("Enter A Hexa-Decimal Number");
+        result = '';
+      }
+      else {
         alert(`${hexValue} is not a Hexa-Decimal number.`);
-        return;
+        result = '';
       }
     }
     else if (unit1 === "4" && unit2 === "2") {
       let hexValue = HexInput.value;
       if (isHexadecimal(hexValue)) {
         result = hexToDec(hexValue);
-      } else {
+      } else if (hexValue <= 0) {
+        alert("Enter A Hexa-Decimal Number");
+        result = '';
+      }
+      else {
         alert(`${hexValue} is not a Hexa-Decimal number.`);
-        return;
+        result = '';
       }
     }
 
@@ -210,18 +221,24 @@ selectBox1.addEventListener("change", () => {
       let hexValue = HexInput.value;
       if (isHexadecimal(hexValue)) {
         result = hexToOct(hexValue);
+      } else if (hexValue <= 0) {
+        alert("Enter A Hexa-Decimal Number");
+        result = '';
       } else {
         alert(`${hexValue} is not a Hexa-Decimal number.`);
-        return;
+        result = '';
       }
     }
     else if (unit1 === "4" && unit2 === "4") {
       let hexValue = HexInput.value;
       if (isHexadecimal(hexValue)) {
         result = hexValue;
+      } else if (hexValue <= 0) {
+        alert("Enter A Hexa-Decimal Number");
+        result = '';
       } else {
         alert(`${hexValue} is not a Hexa-Decimal number.`);
-        return;
+        result = '';
       }
     }
     answer.innerHTML = result;
