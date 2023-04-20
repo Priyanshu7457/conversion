@@ -120,8 +120,11 @@ const HexInput = document.getElementById("Hexbox");
 selectBox1.addEventListener("change", () => {
   const unit1 = selectBox1.value;
   if (unit1 === "4") {
-    HexInput.classList.toggle("H-hide");
-    input.classList.toggle("I-hide");
+    HexInput.classList.remove("H-hide");
+    input.classList.add("I-hide");
+  } else {
+    HexInput.classList.add("H-hide");
+    input.classList.remove("I-hide");
   }
 
 
@@ -133,7 +136,7 @@ selectBox1.addEventListener("change", () => {
     if (unit1 != 4) {
       if (isNaN(inputValue)) {
         alert("Please enter a number!");
-        result='';
+        result = '';
       }
     }
 
