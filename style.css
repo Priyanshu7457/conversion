@@ -7,24 +7,40 @@ body {
   display: grid;
   place-items: center;
 }
+#conversion {
+  margin-top: 100px;
+}
+#heading{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
 #box {
   height: 30px;
   width: 200px;
 }
 
+#Hexbox {
+  height: 30px;
+  width: 200px;
+}
+
+#Hexbox::placeholder {
+  font-size: 14px;
+}
 #answer {
   cursor: not-allowed;
-  border: 2px solid black;
+  border: 1px solid black;
   background-color: rgb(248, 236, 236);
   height: 30px;
   width: 200px;
   text-align: right;
+  font-size: 1rem;
 }
 
 #selectbox1,
 #selectbox2 {
   width: 200px;
+  cursor: pointer;
 }
 
 #convert,
@@ -54,13 +70,10 @@ body {
   background-color: white;
 }
 
-#Hexbox {
-  height: 30px;
-  width: 200px;
-}
 .H-hide {
   display: none;
 }
 .I-hide {
   display: none;
 }
+
