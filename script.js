@@ -65,11 +65,30 @@ function decimalToHex(decimal) {
 // Octal To Binary 
 function octalToBinary(octal) {
   return parseInt(octal, 8).toString(2);
+
+}
+
+
+const isOctal = (c) => {
+  let a = c.toString();
+  console.log(typeof a);
+  let b = Array.from(a);
+  console.log(b);
+
+  for (let i = 0; i < b.length; i++) {
+    if (b[i] >= 8) {
+      alert(`${c} is Not A Octal Number`);
+      return true;
+
+    }
+
+  }
 }
 
 // Octal To Decimal 
 function octalToDecimal(octal) {
   return parseInt(octal, 8);
+
 }
 
 // Octal To Hexa-Decimal 
@@ -116,6 +135,8 @@ const convert = document.getElementById("convert");
 const reset = document.getElementById("reset");
 const HexInput = document.getElementById("Hexbox");
 
+// Conversion
+
 
 selectBox1.addEventListener("change", () => {
   const unit1 = selectBox1.value;
@@ -126,12 +147,12 @@ selectBox1.addEventListener("change", () => {
     HexInput.classList.add("H-hide");
     input.classList.remove("I-hide");
   }
-
+  let result;
 
   convert.addEventListener("click", () => {
     const unit1 = selectBox1.value;
     const unit2 = selectBox2.value;
-    let result;
+
     const inputValue = parseFloat(input.value);
     if (unit1 != 4) {
       if (isNaN(inputValue)) {
@@ -183,13 +204,40 @@ selectBox1.addEventListener("change", () => {
     }
     //  Octal 
     else if (unit1 === "3" && unit2 === "3") {
-      result = inputValue;
+
+      let a = isOctal(inputValue);
+      if (a == true) {
+        result = answer.innerHTML
+      } else {
+        result = inputValue;
+      }
+
+
     } else if (unit1 === "3" && unit2 === "1") {
-      result = octalToBinary(inputValue);
+      let a = isOctal(inputValue);
+      if (a == true) {
+        result = answer.innerHTML
+      } else {
+        result = octalToBinary(inputValue);
+      }
+
     } else if (unit1 === "3" && unit2 === "2") {
-      result = octalToDecimal(inputValue);
+      let a = isOctal(inputValue);
+      if (a == true) {
+        result = answer.innerHTML
+      } else {
+        result = octalToDecimal(inputValue);
+      }
+
     } else if (unit1 === "3" && unit2 === "4") {
-      result = octalToHex(inputValue);
+
+      let a = isOctal(inputValue);
+      if (a == true) {
+        result = answer.innerHTML
+      } else {
+        result = octalToHex(inputValue);
+      }
+
     }
     //  Hexa Decimal 
     else if (unit1 === "4" && unit2 === "1") {
