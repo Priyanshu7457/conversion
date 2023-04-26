@@ -118,6 +118,7 @@ selectBox1.addEventListener("change", () => {
     const hexValue = HexInput.value; 
      const done = () => {
       input.style.border = `1px solid lime`;
+        HexInput.style.border='1px solid lime';
     }
     const binaryAlert = () => {
       appendAlert(`${inputValue} Is Not A Binary Number`, 'danger', 'red');
