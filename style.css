@@ -71,8 +71,9 @@
   display: none;
 }
 .alert1 {
-  height: 60px;
-  width: 85%;
+   height: 60px;
+  width: 300px;
+  margin-bottom: 25px;
 }
 /* Error  */
 .error {
