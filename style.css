@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Castoro+Titling&display=swap");
+
 * {
   margin: 0;
   padding: 0;
 }
+
 #conversion {
   margin-top: 100px;
   display: grid;
@@ -15,10 +17,12 @@
   height: 40px;
   width: 300px;
 }
+
 #Hexbox {
   height: 40px;
   width: 300px;
 }
+
 #Hexbox::placeholder {
   font-size: 14px;
 }
@@ -31,12 +35,14 @@
   text-align: right;
   font-size: 0.96rem;
 }
+
 #selectbox1,
 #selectbox2 {
   width: 300px;
   height: 40px;
   cursor: pointer;
 }
+
 #convert,
 #reset {
   border: 2px solid black;
@@ -45,43 +51,51 @@
   width: 100px;
   border-radius: 25px;
 }
+
 #convert {
   background-color: green;
 }
+
 #reset {
+  /* width: 100px; */
   background-color: red;
 }
+
 #convert:hover {
   color: green;
   background-color: white;
   box-shadow: 2px -2px 2px lime, -2px 2px 2px lime;
 }
+
 #reset:hover {
   color: red;
   background-color: white;
   box-shadow: 2px -2px 2px red, -2px 2px 2px red;
 }
+
 .H-hide {
   display: none;
 }
 .I-hide {
   display: none;
 }
+
 .h-alert {
   display: none;
 }
 .alert1 {
-   height: 60px;
+  height: 60px;
   width: 300px;
   margin-bottom: 25px;
 }
-/* Error  */
 .error {
   border: 1px solid red;
 }
+
 .done {
   border: 1px solid lime;
 }
+
 .warn {
   border: 1px solid coral;
 }
