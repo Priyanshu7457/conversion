@@ -9,16 +9,27 @@ const HexInput = document.getElementById("Hexbox");
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 const wrapper = document.createElement('div');
 let result;
+
+// All Function 
+//{
+// Function to check if a number is binary
 function isBinary(num) {
   while (num > 0) {
     if (num % 10 !== 0 && num % 10 !== 1) {
-      return false;}num = Math.floor(num / 10);}
+      return false;
+    }
+    num = Math.floor(num / 10);
+  }
   return true;
-}function isHexadecimal(str) {
+}
+// Function to check if a number is Hexa-Decimal
+function isHexadecimal(str) {
   // Regular expression to match a valid hexadecimal string
   let hexRegex = /^[0-9A-Fa-f]+$/;
   return hexRegex.test(str);
 }
+
+// Convert Binary Number To Decimal Number
 function binaryToDecimal(binary) {
   let decimal = 0;
   let base = 1;
@@ -29,11 +40,18 @@ function binaryToDecimal(binary) {
   }
   return decimal;
 }
+
+// Convert Binary To Hexa-Decimal
 function binaryToHex(binary) {
+  // Convert binary to decimal
   const decimal = parseInt(binary, 2);
+  // Convert decimal to hexadecimal
   const hex = decimal.toString(16);
+  // Return hexadecimal value
   return hex;
 }
+
+// Convert Decimal Number To Octal Number 
 function decimalToOctal(decimal) {
   let octal = "";
   while (decimal > 0) {
@@ -42,17 +60,30 @@ function decimalToOctal(decimal) {
   }
   return octal;
 }
+
+// Convert Decimal Number To Hexa-Decimal Number 
+
 function decimalToHex(decimal) {
+  // Convert decimal to hexadecimal
   const hex = decimal.toString(16);
+  // Return hexadecimal value
   return hex;
 }
+
+
+// Octal To Binary 
 function octalToBinary(octal) {
   return parseInt(octal, 8).toString(2);
 
 }
+
+
 const isOctal = (c) => {
   let a = c.toString();
+  // console.log(typeof a);
   let b = Array.from(a);
+  // console.log(b);
+
   for (let i = 0; i < b.length; i++) {
     if (b[i] >= 8) {
       appendAlert(`${c} Is Not A Octal Number`, 'danger', 'red');
@@ -62,47 +93,82 @@ const isOctal = (c) => {
 
   }
 }
+
+// Octal To Decimal 
 function octalToDecimal(octal) {
   return parseInt(octal, 8);
 
 }
+
+// Octal To Hexa-Decimal 
 function octalToHex(octal) {
+  // Convert octal to decimal
   const decimal = parseInt(octal, 8);
+  // Convert decimal to hexadecimal
   const hex = decimal.toString(16);
+  // Return hexadecimal value
   return hex;
 }
+
+
+// Hexa-Decimal To Binary 
 function hexToBinary(hex) {
+  // Convert the hexadecimal to a decimal number
   let decimal = parseInt(hex, 16);
+  // Convert the decimal to a binary string
   let binary = decimal.toString(2);
+  // Add leading zeros to ensure the binary string has 4 bits per hexadecimal digit
   while (binary.length < hex.length * 4) {
     binary = "0" + binary;
   }
   return binary;
 }
+
+// Hexa-Decimal To Decimal 
 function hexToDec(hex) {
   return parseInt(hex, 16);
 }
+// Hexa-Decimal To Octal
 function hexToOct(hex) {
+  // First, convert the hexadecimal number to decimal
   const decimal = parseInt(hex, 16);
+  // Then, convert the decimal number to octal
   const octal = decimal.toString(8);
   return octal;
 }
+//}
+
+// function End 
+
+
+// Alert 
+
 const appendAlert = (message, type, bColor, link) => {
   alertPlaceholder.classList.remove('h-alert');
   setTimeout(() => {
     alertPlaceholder.classList.add('h-alert');
   }, 2500);
+
   input.style.border = `1px solid ${bColor}`;
   HexInput.style.border = `1px solid ${bColor}`;
+
   wrapper.innerHTML = [
     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
     `   <div>${message}</div>`,
     '</div>'
   ].join('');
+
   alertPlaceholder.append(wrapper);
 }
+
+
+
+
+// Conversion
 selectBox1.addEventListener("change", () => {
   const unit1 = selectBox1.value;
+  // const unit2 = selectBox2.value;
+
   if (unit1 === "4") {
     HexInput.classList.remove("H-hide");
     input.classList.add("I-hide");
@@ -110,26 +176,37 @@ selectBox1.addEventListener("change", () => {
     HexInput.classList.add("H-hide");
     input.classList.remove("I-hide");
   }
+
   {
     convert.addEventListener("click", () => {
       const unit1 = selectBox1.value;
       const unit2 = selectBox2.value;
       const inputValue = parseFloat(input.value);
       const hexValue = HexInput.value;
-      if ((unit1 == 0 && unit2 == 0) || (unit1 > 0 && unit2 == 0) || (unit1 == 0 && unit2 >= 0)) {appendAlert('Please Select A Type', 'warning', 'coral');
-        result = 'Output-Box'; }
+
+      if ((unit1 == 0 && unit2 == 0) || (unit1 > 0 && unit2 == 0) || (unit1 == 0 && unit2 >= 0)) {
+        appendAlert('Please Select A Type', 'warning', 'coral');
+        result = 'Output-Box';
+
+      }
+      // Alerts 
       const done = () => {
         input.style.border = `1px solid lime`;
         HexInput.style.border = '1px solid lime';
       }
+
+
+
       const binaryAlert = () => {
         appendAlert(`${inputValue} Is Not A Binary Number`, 'danger', 'red');
         return result = 'Output-Box';
       }
+
       const hexaDecimalError = () => {
         appendAlert(`${hexValue} Is Not A  Hexa-Decimal Number`, 'danger', 'red');
         return result = 'Output-Box';
       }
+
       const hexaDecimalWarn = () => {
         appendAlert(`Enter A Hexa-Decimal Number`, 'warning', 'coral');
         return result = 'Output-Box';
@@ -147,7 +224,11 @@ selectBox1.addEventListener("change", () => {
           else {
             done();
           }
-        } 
+        }
+
+
+        // Binary 
+
         if (unit1 === "1" && unit2 === "1") {
           if (isBinary(inputValue)) {
             result = inputValue;
@@ -170,7 +251,10 @@ selectBox1.addEventListener("change", () => {
           if (isBinary(inputValue)) {
             result = binaryToHex(inputValue);
           } else {
-            binaryAlert(); } }
+            binaryAlert();
+          }
+        }
+        //  Decimal 
         else if (unit1 === "2" && unit2 === "1") {
           result = inputValue.toString(2).padStart(4, "0");
         } else if (unit1 === "2" && unit2 === "2") {
@@ -179,7 +263,9 @@ selectBox1.addEventListener("change", () => {
           result = decimalToOctal(inputValue);
         } else if (unit1 === "2" && unit2 === "4") {
           result = decimalToHex(inputValue);
-        } else if (unit1 === "3" && unit2 === "3") {
+        }
+        //  Octal 
+        else if (unit1 === "3" && unit2 === "3") {
           let a = isOctal(inputValue);
           if (a == true) {
             result = 'Output-Box';
@@ -192,12 +278,16 @@ selectBox1.addEventListener("change", () => {
             result = 'Output-Box';
           } else {
             result = octalToBinary(inputValue);
-          } } else if (unit1 === "3" && unit2 === "2") {
+          }
+
+        } else if (unit1 === "3" && unit2 === "2") {
           let a = isOctal(inputValue);
           if (a == true) {
             result = 'Output-Box';
           } else {
-            result = octalToDecimal(inputValue);  }
+            result = octalToDecimal(inputValue);
+          }
+
         } else if (unit1 === "3" && unit2 === "4") {
 
           let a = isOctal(inputValue);
@@ -208,6 +298,7 @@ selectBox1.addEventListener("change", () => {
           }
 
         }
+        //  Hexa Decimal 
         else if (unit1 === "4" && unit2 === "1") {
           console.log(hexValue);
           if (isHexadecimal(hexValue)) {
@@ -260,8 +351,6 @@ selectBox1.addEventListener("change", () => {
   }
 
 })
-
-
 
 convert.addEventListener("click", () => {
   if ((selectBox1.value == 0 || selectBox2.value == 0) || (selectBox1.value > 0 && selectBox2.value == 0) || (selectBox1.value == 0 && selectBox2.value >= 0)) {
