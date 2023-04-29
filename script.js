@@ -5,10 +5,12 @@ const selectBox2 = document.getElementById("selectbox2");
 const convert = document.getElementById("convert");
 const reset = document.getElementById("reset");
 const HexInput = document.getElementById("Hexbox");
+const sInput = document.getElementById('SI-box');
+const hInput = document.getElementById('HI-box');
+const aBox = document.getElementById('A-box');
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 const wrapper = document.createElement('div');
 let result;
-
 function isBinary(num) {
   while (num > 0) {
     if (num % 10 !== 0 && num % 10 !== 1) {
@@ -36,9 +38,7 @@ function binaryToHex(binary) {
   const decimal = parseInt(binary, 2);
   const hex = decimal.toString(16);
   return hex;
-}
-
-// Convert Decimal Number To Octal Number 
+} 
 function decimalToOctal(decimal) {
   let octal = "";
   while (decimal > 0) {
@@ -47,52 +47,37 @@ function decimalToOctal(decimal) {
   }
   return octal;
 }
-
-// Convert Decimal Number To Hexa-Decimal Number 
-
 function decimalToHex(decimal) {
-  // Convert decimal to hexadecimal
   const hex = decimal.toString(16);
-  // Return hexadecimal value
   return hex;
 }
-
-
-// Octal To Binary 
 function octalToBinary(octal) {
   return parseInt(octal, 8).toString(2);
 
 }
-
-
 const isOctal = (c) => {
   let a = c.toString();
-  // console.log(typeof a);
   let b = Array.from(a);
-  // console.log(b);
-
   for (let i = 0; i < b.length; i++) {
     if (b[i] >= 8) {
       appendAlert(`${c} Is Not A Octal Number`, 'danger', 'red');
       return true;
     }
-
-
   }
-}
-
+} 
 function octalToDecimal(octal) {
   return parseInt(octal, 8);
 
 }
 function octalToHex(octal) {
+  // Convert octal to decimal
   const decimal = parseInt(octal, 8);
-
   const hex = decimal.toString(16);
-
   return hex;
 }
- 
+
+
+// Hexa-Decimal To Binary 
 function hexToBinary(hex) {
   let decimal = parseInt(hex, 16);
   let binary = decimal.toString(2);
@@ -100,19 +85,15 @@ function hexToBinary(hex) {
     binary = "0" + binary;
   }
   return binary;
-}
+} 
 function hexToDec(hex) {
   return parseInt(hex, 16);
 }
-
 function hexToOct(hex) {
- 
   const decimal = parseInt(hex, 16);
   const octal = decimal.toString(8);
   return octal;
 }
-
-
 const appendAlert = (message, type, bColor, link) => {
   alertPlaceholder.classList.remove('h-alert');
   setTimeout(() => {
@@ -131,17 +112,44 @@ const appendAlert = (message, type, bColor, link) => {
   alertPlaceholder.append(wrapper);
 }
 
-selectBox1.addEventListener("change", () => {
-  const unit1 = selectBox1.value;
+selectBox2.addEventListener("change", () => {
+  const unit2 = selectBox2.value;
 
-  if (unit1 === "4") {
-    HexInput.classList.remove("H-hide");
-    input.classList.add("I-hide");
-  } else {
-    HexInput.classList.add("H-hide");
-    input.classList.remove("I-hide");
+  if (unit2 == 1) {
+    aBox.innerHTML = '2'
+  } else if (unit2 == 2) {
+    aBox.innerHTML = '10'
+  } else if (unit2 == 3) {
+    aBox.innerHTML = '8'
+  } else if (unit2 == 4) {
+    aBox.innerHTML = '16'
   }
 
+})
+selectBox1.addEventListener("change", () => {
+  const unit1 = selectBox1.value;
+  if (unit1 === "4") {
+    HexInput.classList.remove("H-hide");
+    hInput.classList.remove("H-hide");
+    input.classList.add("I-hide");
+    sInput.classList.add("I-hide");
+    hInput.innerHTML = '16';
+  } else {
+    HexInput.classList.add("H-hide");
+    hInput.classList.add("H-hide");
+    input.classList.remove("I-hide");
+    sInput.classList.remove("I-hide");
+  }
+
+  if (unit1 == 1) {
+    sInput.innerHTML = '2';
+  } else if (unit1 == 2) {
+    sInput.innerHTML = '10';
+  } else if (unit1 == 3) {
+    sInput.innerHTML = '8';
+  }
+
+  {
     convert.addEventListener("click", () => {
       const unit1 = selectBox1.value;
       const unit2 = selectBox2.value;
@@ -153,14 +161,10 @@ selectBox1.addEventListener("change", () => {
         result = 'Output-Box';
 
       }
-      // Alerts 
       const done = () => {
         input.style.border = `1px solid lime`;
         HexInput.style.border = '1px solid lime';
       }
-
-
-
       const binaryAlert = () => {
         appendAlert(`${inputValue} Is Not A Binary Number`, 'danger', 'red');
         return result = 'Output-Box';
@@ -190,6 +194,7 @@ selectBox1.addEventListener("change", () => {
           }
         }
         if (unit1 === "1" && unit2 === "1") {
+
           if (isBinary(inputValue)) {
             result = inputValue;
           } else {
@@ -215,12 +220,16 @@ selectBox1.addEventListener("change", () => {
           }
         } 
         else if (unit1 === "2" && unit2 === "1") {
+
           result = inputValue.toString(2).padStart(4, "0");
         } else if (unit1 === "2" && unit2 === "2") {
+
           result = inputValue;
         } else if (unit1 === "2" && unit2 === "3") {
+
           result = decimalToOctal(inputValue);
         } else if (unit1 === "2" && unit2 === "4") {
+
           result = decimalToHex(inputValue);
         }
         else if (unit1 === "3" && unit2 === "3") {
@@ -305,14 +314,14 @@ selectBox1.addEventListener("change", () => {
 
     });
 
-});
-
+  }
+})
 convert.addEventListener("click", () => {
   if ((selectBox1.value == 0 || selectBox2.value == 0) || (selectBox1.value > 0 && selectBox2.value == 0) || (selectBox1.value == 0 && selectBox2.value >= 0)) {
     appendAlert('Please Select A Type', 'warning', 'coral');
-     result = 'Output-Box';
+    result = 'Output-Box';
   }
-});
+})
 
 reset.addEventListener("click", () => {
   location.reload();
