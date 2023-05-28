@@ -1,5 +1,6 @@
 body {
   background-color: #f8f8f8;
+    margin-top: 50px;
 }
 #conversion {
   margin: 0 auto;
@@ -120,6 +121,10 @@ body {
   }
 }
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
+  body {
+    margin-top: 100px;
+  }
+  
   #conversion {
     padding: 20px;
   }
@@ -135,6 +140,10 @@ body {
 
 }
 @media only screen and (min-width: 1201px) {
+  body {
+    margin-top: 100px;
+  }
+  
   #conversion {
     padding: 20px;
   }
