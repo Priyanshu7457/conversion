@@ -1,10 +1,8 @@
-/* Add a background color to the body */
+
 body {
   background-color: #f8f8f8;
   margin-top: 50px;
 }
-
-/* Center the conversion box */
 #conversion {
   margin: 0 auto;
   max-width: 800px;
@@ -13,8 +11,6 @@ body {
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0.3);
 }
-
-/* Style the heading */
 #heading {
   text-align: center;
   margin-bottom: 30px;
@@ -38,12 +34,9 @@ body {
   color: black;
   font-size: 25px;
 }
-
-/* Style the select boxes */
 .selectbox {
   margin-top: 10px;
   width: 100%;
-  background-color: #f5f5f5;
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -52,7 +45,15 @@ body {
 
 /* Style the input boxes */
 #box,
-#Hexbox,
+#Hexbox {
+  margin-top: 10px;
+  width: 80%;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
 #answer {
   margin-top: 10px;
   width: 80%;
@@ -61,8 +62,8 @@ body {
   border-radius: 5px;
   padding: 10px;
   font-size: 16px;
-  color: #555;
 }
+
 #SI-box,
 #HI-box,
 #A-box {
